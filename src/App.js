@@ -74,15 +74,21 @@ function App() {
           <button type='submit'>ADD TODO</button>
         </form>
 
-        {todos.map((element) => <div key={element.id}>
+        <hr className='line' />
+
+
+        {todos.map((element) => <div key={element.id} className='form-field'>
 
           {todoEditing === element.id ?
             // (<input type='text' onChange={(e) => setEditing(e.target.value)} value={editing} defaultValue={element.text} />)
             (<input type='text' onChange={(e) => setEditing(e.target.value)} value={editing} placeholder={element.text} />)
             : (<div className='element'>{element.text}</div>
             )}
-          <label htmlFor="">COMPLETED:</label>
-          <input className='check' type="checkbox" onChange={() => toggleComplete(element.id)} checked={element.completed} />
+
+          <div>
+            <label htmlFor="completed">COMPLETED:</label>
+            <input id='completed' className='check' type="checkbox" onChange={() => toggleComplete(element.id)} checked={element.completed} />
+          </div>
 
           <button onClick={() => deleteTodo(element.id)}>DELETE</button>
 
@@ -91,7 +97,7 @@ function App() {
             :
             (<button onClick={() => setTodoEditing(element.id)}>EDIT ELEMENT</button>)
           }
-        <hr className='line'/>
+          <hr className='line' />
         </div>)}
       </div>
     </div>
